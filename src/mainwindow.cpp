@@ -41,14 +41,13 @@
 #include <QHeaderView>
 #include <QStandardPaths>
 #include <QDateTime>
-#include <QX11Info>
 
 #include "application.h"
-#include <libfm-qt/folderview.h>
-#include <libfm-qt/filepropsdialog.h>
-#include <libfm-qt/fileoperation.h>
-#include <libfm-qt/folderitemdelegate.h>
-#include <libfm-qt/utilities.h>
+#include <libfm-qt6/folderview.h>
+#include <libfm-qt6/filepropsdialog.h>
+#include <libfm-qt6/fileoperation.h>
+#include <libfm-qt6/folderitemdelegate.h>
+#include <libfm-qt6/utilities.h>
 
 #include "mrumenu.h"
 #include "resizeimagedialog.h"
@@ -84,7 +83,7 @@ MainWindow::MainWindow():
   Settings& settings = app->settings();
 
   ui.setupUi(this);
-  if(QX11Info::isPlatformX11()) {
+  if(QGuiApplication::platformName() == QStringLiteral("xcb")) {
     connect(ui.actionScreenshot, &QAction::triggered, app, &Application::screenshot);
   }
   else {
@@ -1171,8 +1170,9 @@ void MainWindow::setShortcuts(bool update) {
       action->setShortcut(keySeq);
       if(!hardCodedShortcuts.isEmpty()) {
         for(int i = 0; i < keySeq.count(); ++i) {
-          if(hardCodedShortcuts.contains(keySeq[i])) { // would be ambiguous
-            hardCodedShortcuts.take(keySeq[i])->setKey(QKeySequence());
+          int k = keySeq[i].toCombined();
+          if(hardCodedShortcuts.contains(k)) { // would be ambiguous
+            hardCodedShortcuts.take(k)->setKey(QKeySequence());
           }
         }
       }
