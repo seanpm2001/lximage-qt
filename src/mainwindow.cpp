@@ -277,7 +277,7 @@ void MainWindow::on_actionAbout_triggered() {
                      QStringLiteral("<center><b><big>LXImage-Qt %1</big></b></center><br>").arg(qApp->applicationVersion())
                      + tr("A simple and fast image viewer")
                      + QStringLiteral("<br><br>")
-                     + tr("Copyright (C) ") + tr("2013-2021")
+                     + tr("Copyright (C) ") + tr("2013-2023")
                      + QStringLiteral("<br><a href='https://lxqt-project.org'>")
                      + tr("LXQt Project")
                      + QStringLiteral("</a><br><br>")

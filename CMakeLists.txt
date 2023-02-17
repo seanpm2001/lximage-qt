@@ -34,7 +34,7 @@ find_package(Qt6Svg ${QT_MINIMUM_VERSION} REQUIRED)
 find_package(fm-qt6 ${LIBFMQT_MINIMUM_VERSION} REQUIRED)
 find_package(lxqt2-build-tools ${LXQTBT_MINIMUM_VERSION} REQUIRED)
 find_package(Exif REQUIRED)
-message(STATUS "Building with Qt ${Qt5Core_VERSION}")
+message(STATUS "Building with Qt ${Qt6Core_VERSION}")
 
 include(LXQtPreventInSourceBuilds)
 include(LXQtCompilerSettings NO_POLICY_SCOPE)
